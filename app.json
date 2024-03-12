@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Aw",
+    "name": "AW",
     "slug": "Aw",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jornryoffaith"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7cab0e47-73a2-4a1f-b2f1-3070f43a19f0"
+      }
     }
   }
 }
