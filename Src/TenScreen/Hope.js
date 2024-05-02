@@ -1,27 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, FlatList, TouchableHighlight, StyleSheet, Share,TouchableOpacity, Alert, Platform, PermissionsAndroid, Clipboard } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
+import React, { useState, useRef, useEffect } from "react";
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableHighlight,
+  StyleSheet,
+  Share,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+  Clipboard,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import ViewShot from "react-native-view-shot";
-import * as FileSystem from 'expo-file-system';
-
-
-
+import * as FileSystem from "expo-file-system";
 
 const Hope = () => {
-  const [verseColors, setVerseColors] = useState({}); 
-  const [verses, setVerses] = useState([]); 
+  const [verseColors, setVerseColors] = useState({});
+  const [verses, setVerses] = useState([]);
 
-  const viewShotRef = useRef(null); 
+  const viewShotRef = useRef(null);
 
   useEffect(() => {
-    setVerses(getBibleVerses()); 
+    setVerses(getBibleVerses());
   }, []);
 
   const getBibleVerses = () => {
     return [
-  
       "Romans 15:13: May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.",
       "Psalm 39:7: And now, O Lord, for what do I wait? My hope is in you.",
       "Jeremiah 29:11: For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.",
@@ -31,9 +37,7 @@ const Hope = () => {
       "1 Peter 1:3: Blessed be the God and Father of our Lord Jesus Christ! According to his great mercy, he has caused us to be born again to a living hope through the resurrection of Jesus Christ from the dead.",
       "Isaiah 40:31: But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
       "Romans 12:12: Rejoice in hope, be patient in tribulation, be constant in prayer.",
-      "Psalm 147:11: But the Lord takes pleasure in those who fear him, in those who hope in his steadfast love."
-
-
+      "Psalm 147:11: But the Lord takes pleasure in those who fear him, in those who hope in his steadfast love.",
     ];
   };
 
@@ -44,57 +48,63 @@ const Hope = () => {
 
   const handleVersePress = (index) => {
     const updatedColors = { ...verseColors };
-    updatedColors[index] = generateRandomColor(); 
-    setVerseColors(updatedColors); 
+    updatedColors[index] = generateRandomColor();
+    setVerseColors(updatedColors);
   };
 
   const copyVerse = (verse) => {
     Clipboard.setString(verse);
-    Alert.alert('Copied', 'Verse copied to clipboard!');
+    Alert.alert("Copied", "Verse copied to clipboard!");
   };
-
-
 
   const shareApp = async (verse) => {
     const appMessage = `${verse}`;
-  
+
     try {
       const result = await Share.share({
         message: appMessage,
       });
-  
+
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          console.log('Verse shared successfully.');
+          console.log("Verse shared successfully.");
         } else {
-          console.log('Share was dismissed.');
+          console.log("Share was dismissed.");
         }
       } else if (result.action === Share.dismissedAction) {
-        console.log('Share was dismissed.');
+        console.log("Share was dismissed.");
       }
     } catch (error) {
-      console.error('Error sharing verse:', error.message);
+      console.error("Error sharing verse:", error.message);
     }
   };
-  
 
   const downloadVerse = async (verse) => {
     try {
-      const fileUri = `${FileSystem.documentDirectory}${verse.replace(/\s/g, '_')}.txt`;
+      const fileUri = `${FileSystem.documentDirectory}${verse.replace(
+        /\s/g,
+        "_"
+      )}.txt`;
       await FileSystem.writeAsStringAsync(fileUri, verse);
-      Alert.alert('Success', 'Verse downloaded successfully!');
+      Alert.alert("Success", "Verse downloaded successfully!");
     } catch (error) {
-      console.error('Error downloading verse:', error.message);
-      Alert.alert('Error', 'Failed to download verse. Please check your internet connection and try again.');
+      console.error("Error downloading verse:", error.message);
+      Alert.alert(
+        "Error",
+        "Failed to download verse. Please check your internet connection and try again."
+      );
     }
   };
-  
-  
 
   const renderItem = ({ item, index }) => (
     <View style={styles.itemContainer}>
       <ViewShot ref={viewShotRef} options={{ format: "jpg", quality: 1 }}>
-        <View style={[styles.verseContainer, { backgroundColor: verseColors[index] || '#33C5BF' }]}>
+        <View
+          style={[
+            styles.verseContainer,
+            { backgroundColor: verseColors[index] || "#33C5BF" },
+          ]}
+        >
           <TouchableHighlight
             onPress={() => handleVersePress(index)}
             underlayColor="transparent"
@@ -110,10 +120,20 @@ const Hope = () => {
           <Ionicons name="copy" size={24} color="#33C5BF" style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => shareApp(item)}>
-          <Ionicons name="share-social" size={24} color="#33C5BF" style={styles.icon} />
+          <Ionicons
+            name="share-social"
+            size={24}
+            color="#33C5BF"
+            style={styles.icon}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => downloadVerse(item)}>
-          <Ionicons name="download" size={24} color="#33C5BF" style={styles.icon} />
+          <Ionicons
+            name="download"
+            size={24}
+            color="#33C5BF"
+            style={styles.icon}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -135,41 +155,37 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 40,
-    flexDirection: 'row',
-    
-    },
+    flexDirection: "row",
+  },
   itemContainer: {
     marginBottom: 20,
-    
   },
   verseContainer: {
     borderRadius: 10,
     padding: 30,
     marginBottom: 10,
-  
   },
   touchableHighlight: {
     borderRadius: 10,
   },
   text: {
     fontSize: 20,
-    
-    color: 'white',
-    textAlign: 'center',
+
+    color: "white",
+    textAlign: "center",
     fontSize: 20,
-    fontWeight: 'bold',
-    textShadowColor: 'black',
+    fontWeight: "bold",
+    textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2
+    textShadowRadius: 2,
   },
   iconContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   icon: {
     marginRight: 15,
   },
 });
 
-
-export default Hope
+export default Hope;

@@ -85,7 +85,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40,
+  
     margin: 20,
     marginTop:0,
   },

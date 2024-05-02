@@ -90,7 +90,8 @@ const Thankful = () => {
     try {
       const fileUri = `${FileSystem.documentDirectory}${verse.replace(/\s/g, '_')}.txt`;
       await FileSystem.writeAsStringAsync(fileUri, verse);
-      Alert.alert('Success', 'Verse downloaded successfully!');
+      const text = FileSystem.readAsStringAsync(fileUri);
+      Alert.alert('Success', 'Verse downloaded successfully!' + fileUri);
     } catch (error) {
       console.error('Error downloading verse:', error.message);
       Alert.alert('Error', 'Failed to download verse');

@@ -41,15 +41,15 @@ function HomeStack() {
         name="Journey of Faith"
         component={Home}
         options={({ navigation }) => ({
-          headerStyle: { height: 100, backgroundColor: '#EE6670' },
+          headerStyle: { height: 120, backgroundColor: '#EE6670' },
           headerTintColor: 'white',
-          headerTitleStyle: { fontWeight: 'bold' },
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 30 },
           headerLeft: () => (
             <TouchableOpacity
-              style={{ marginLeft: 10 }}
+              style={{ marginLeft: 30 }}
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
             >
-              <Entypo name="menu" size={24} color="black" />
+              <Entypo name="menu" size={30} color="black" />
             </TouchableOpacity>
           ),
         })}
@@ -66,14 +66,6 @@ function HomeStack() {
       <Stack.Screen name="Forgiveness" component={Forgiveness} />
       <Stack.Screen name="Healing" component={Healing} />
     </Stack.Navigator>
-  );
-}
-
-function Article() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Article Screen</Text>
-    </View>
   );
 }
 

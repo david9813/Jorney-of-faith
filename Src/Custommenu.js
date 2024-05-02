@@ -16,7 +16,7 @@ const Custommenu = ({ navigation }) => {
   };
   // for share app
   const shareApp = async () => {
-    const appMessage = "Check out this amazing app! It's a great resource for exploring topics like Jesus, miracles, prayer, and more. Download it now!";
+    const appMessage = "Check out this amazing app! It's a great resource for exploring topics like Jesus, miracles, prayer, and more. Download it now! https://play.google.com/store/apps/details?id=com.davidsapkota.JourneyofFaith ";
 
     try {
       const result = await Share.share({
@@ -49,7 +49,7 @@ const Custommenu = ({ navigation }) => {
       </View>
 
       <View style={styles.seconditems}>
-        <TouchableOpacity onPress={() => Linking.openURL('https://davidsapkota.netlify.app/')}>
+        <TouchableOpacity onPress={() => Linking.openURL('https://david-sapkota.netlify.app/')}>
           <Text style={styles.text}> My Website</Text>
         </TouchableOpacity>
 
