@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "AW",
+    "name": "Journey of Faith",
     "slug": "Aw",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/B.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/3.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,11 +18,8 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.jornryoffaith"
+      "useNextUploadCert": true,
+      "package": "com.davidsapkota.Aw"
     },
     "web": {
       "favicon": "./assets/favicon.png"
