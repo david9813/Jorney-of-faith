@@ -1,8 +1,23 @@
 {
+  "cli": {
+    "android": {
+      "build": {
+        "release": {
+          "keystore": {
+            "path": "./Src/key.jdk",
+            "alias": "key0",
+            "storePassword": "9813560194",
+            "keyPassword": "9813560194"
+          },
+          "versionCode":"2.0.0"
+        }
+      }
+    }
+  },
   "expo": {
     "name": "Journey of Faith",
     "slug": "Aw",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/B.png",
     "userInterfaceStyle": "light",
@@ -18,8 +33,7 @@
       "supportsTablet": true
     },
     "android": {
-      "useNextUploadCert": true,
-      "package": "com.davidsapkota.Aw"
+      "package": "com.davidsapkota.JourneyofFaith"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,6 +42,12 @@
       "eas": {
         "projectId": "7cab0e47-73a2-4a1f-b2f1-3070f43a19f0"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7cab0e47-73a2-4a1f-b2f1-3070f43a19f0"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
